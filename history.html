@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <title>pushState-history.js</title>
+</head>
+<body>
+
+<ul>
+	<li><a href="history.html">history.html</a></li>
+	<li><a href="a.html">a.html</a></li>
+	<li><a href="b.html">b.html</a></li>
+</ul>
+<div id="debug"></div>
+
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+
+
+<script>
+$(function(){
+
+	$('#debug').html(new Date().getTime());
+
+	var
+		History = window.History,
+		State = History.getState();
+
+
+	History.log('initial:', State.data, State.title, State.url);
+
+	History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+		// Log the State
+		var State = History.getState(); // Note: We are using History.getState() instead of event.state
+		History.log('statechange:', State.data, State.title, State.url);
+	});
+
+
+	//링크설정
+	$('a').on('click',function(event){
+
+		var url = event.target.href,
+			title = event.target.innerHTML;
+
+		History.pushState({url:url}, title, url);
+		return false;
+	});
+
+});
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

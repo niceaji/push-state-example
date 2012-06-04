@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <title>pushState</title>
+</head>
+<body>
+
+<ul>
+	<li><a href="html5.html">html5.html</a></li>
+	<li><a href="a.html">a.html</a></li>
+	<li><a href="b.html">b.html</a></li>
+</ul>
+<div id="debug"></div>
+
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+
+$(function(){
+
+	$('#debug').html(new Date().getTime());
+
+	$(window).on('popstate',function(event){
+		var state = event.originalEvent.state;
+		console.log("popstate:", state );
+	});
+
+
+	$(window).on('hashchange',function(event){
+		console.log("hashchange:");
+	});
+	$(window).on('pageshow',function(event){
+		console.log("pageshow:");
+	});
+	$(window).on('pagehide',function(event){
+		console.log("pagehide:");
+	});
+
+	//링크설정 
+	$('a').on('click',function(event){
+
+		var url = event.target.href,
+			title = event.target.innerHTML;
+
+		history.pushState({url:url}, title, url);
+		return false;
+	});
+
+});
+</script>
+
+
+
+
+</body>
+</html>
