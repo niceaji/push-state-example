@@ -1,8 +1,12 @@
 <?
+//공통 header
+
+//문서 호출시에 request header에 넣어주는 값으로 pjax인지 체크
 $pjax = ($_SERVER['HTTP_X_PJAX']==="true");
 
 
 if($pjax){
+	//타이틀 변경하기 위해서
 	echo "<title>{$title}</title>";
 	return;
 }
