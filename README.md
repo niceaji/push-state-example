@@ -1,1 +1,1 @@
-pjax 예제 : http://uixkr.github.io/archives/920/
+pjax 예제 : http://uixkr.github.io/archives/920
